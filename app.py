@@ -8,8 +8,7 @@ app = Flask(__name__)
 def index():
     my_game = raspieats.Game()
     my_game.run()
-    score = my_game.score
-    return render_template("index.html", score=score)
+    return render_template("index.html")
 
 
 if (__name__)== '__main__':

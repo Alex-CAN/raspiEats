@@ -34,11 +34,28 @@ class Game:
 
 
 
+    def reset(self):
+        sense.clear()
+        self.player_x = random.randint(0,7)
+        self.player_y = random.randint(0,7)
+        same_spot = True
+        while same_spot:
+            self.food_x = random.randint(0,7)
+            self.food_y = random.randint(0,7)
+            if self.player_x != self.food_x and self.player_y != self.food_y:
+                same_spot = False
+                break
+
+        sense.set_pixel(self.player_x,self.player_y, y)
+        sense.set_pixel(self.food_x, self.food_y, g)
+        print("reset")
+
     def update(self):
         sense.clear()
         sense.set_pixel(self.player_x,self.player_y, y)
         sense.set_pixel(self.food_x, self.food_y, g)
         print("updated")
+
 
     def down(self):
         if self.player_y <7:
@@ -83,7 +100,7 @@ class Game:
                     self.score += 1
                     sense.show_letter(str(self.score))
                     time.sleep(.5)
-                    self.update()
+                    self.reset()
                 #    sense.show_message("GAME OVER")
 
                                                           
